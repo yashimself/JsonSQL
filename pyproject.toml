@@ -1,0 +1,22 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "jsonsql"
+version = "1.0.0"
+authors = [
+  { name="yashimself", email="" },
+]
+description = "A Python library for safe SQL query execution from JSON input with built-in validation and sanitization"
+readme = "README.md"
+requires-python = ">=3.10"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+Homepage = "https://github.com/yashimself/JsonSQL"
+Issues = "https://github.com/yashimself/JsonSQL/issues"
