@@ -24,3 +24,6 @@ classifiers = [
 [project.urls]
 Homepage = "https://github.com/yashimself/JsonSQL"
 Issues = "https://github.com/yashimself/JsonSQL/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/jsonsql"]
