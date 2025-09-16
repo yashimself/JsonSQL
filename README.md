@@ -2,7 +2,6 @@
 
 This project is an extension of the original [JsonSQL](https://github.com/BigBrainTime/JsonSQL) library. This fork builds upon their work to provide additional features and improvements.
 
-
 # JsonSQL
 
 JsonSQL is a Python class that allows safe execution of SQL queries from untrusted JSON input. It validates the input against allowed queries, tables, columns etc. before constructing a safe SQL string.
@@ -12,7 +11,7 @@ JsonSQL is a Python class that allows safe execution of SQL queries from untrust
 ### Installing the package
 
 ```python
-pip install jsonsql
+pip install JsonSQL2
 ```
 
 ### Full SQL String
