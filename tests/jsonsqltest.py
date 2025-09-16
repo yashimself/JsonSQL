@@ -166,7 +166,7 @@ class TestSQLParse(unittest.TestCase):
     def test_missing_argument(self):
         jsonsql = JsonSQL(['SELECT'], ['*'], ['table1'], ['WHERE'], {})
         input = {'query': 'SELECT', 'items': ['*'], "connection": "WHERE"}
-        result, msg = jsonsql.sql_parse(input)
+        result, msg, params = jsonsql.sql_parse(input)
         self.assertFalse(result)
         self.assertEqual(msg, "Missing argument table")
 
@@ -174,7 +174,7 @@ class TestSQLParse(unittest.TestCase):
         jsonsql = JsonSQL(['SELECT'], ['*'], ['table1'], ['WHERE'], {})
         input = {'query': 'INSERT', 'items': [
             '*'], 'table': 'table1', 'connection': 'WHERE'}
-        result, msg = jsonsql.sql_parse(input)
+        result, msg, params = jsonsql.sql_parse(input)
         self.assertFalse(result)
         self.assertEqual(msg, "Query not allowed - INSERT")
 
@@ -182,7 +182,7 @@ class TestSQLParse(unittest.TestCase):
         jsonsql = JsonSQL(['SELECT'], ['good'], ['table1'], ['WHERE'], {})
         input = {'query': 'SELECT', 'items': [
             'bad'], 'table': 'table1', 'connection': 'WHERE'}
-        result, msg = jsonsql.sql_parse(input)
+        result, msg, params = jsonsql.sql_parse(input)
         self.assertFalse(result)
         self.assertEqual(msg, "Item not allowed - bad")
 
@@ -190,7 +190,7 @@ class TestSQLParse(unittest.TestCase):
         jsonsql = JsonSQL(['SELECT'], ['*'], ['table1'], ['WHERE'], {})
         input = {'query': 'SELECT', 'items': [
             '*'], 'table': 'bad', 'connection': 'WHERE'}
-        result, msg = jsonsql.sql_parse(input)
+        result, msg, params = jsonsql.sql_parse(input)
         self.assertFalse(result)
         self.assertEqual(msg, "Table not allowed - bad")
 
@@ -589,7 +589,7 @@ class TestJoinSupport(unittest.TestCase):
                 }
             ]
         }
-        result, msg = restricted_jsonsql.sql_parse(input_data)
+        result, msg, params = restricted_jsonsql.sql_parse(input_data)
         self.assertFalse(result)
         self.assertIn("JOIN type not allowed", msg)
 
@@ -615,7 +615,7 @@ class TestJoinSupport(unittest.TestCase):
                 }
             ]
         }
-        result, msg = restricted_jsonsql.sql_parse(input_data)
+        result, msg, params = restricted_jsonsql.sql_parse(input_data)
         self.assertFalse(result)
         self.assertIn("Table not allowed", msg)
 
@@ -634,7 +634,7 @@ class TestJoinSupport(unittest.TestCase):
                 }
             ]
         }
-        result, msg = self.jsonsql.sql_parse(input_data)
+        result, msg, params = self.jsonsql.sql_parse(input_data)
         self.assertFalse(result)
         self.assertIn("Invalid JOIN condition", msg)
 
@@ -651,7 +651,7 @@ class TestJoinSupport(unittest.TestCase):
                 }
             ]
         }
-        result, msg = self.jsonsql.sql_parse(input_data)
+        result, msg, params = self.jsonsql.sql_parse(input_data)
         self.assertFalse(result)
         self.assertIn("Missing FROM clause", msg)
 
@@ -670,7 +670,7 @@ class TestJoinSupport(unittest.TestCase):
                 }
             ]
         }
-        result, msg = self.jsonsql.sql_parse(input_data)
+        result, msg, params = self.jsonsql.sql_parse(input_data)
         self.assertFalse(result)
         self.assertIn("Error parsing SQL", msg)
 
